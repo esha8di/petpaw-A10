@@ -2,15 +2,14 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
 import { Contextapi } from "../../Authprovider/Authprovider";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const Servicedetails = () => {
   const { id } = useParams();
-
   const { user } = useContext(Contextapi);
 
-  // const [book, setBook] = useState(false);
-
   const [service, setService] = useState([]);
+
   useEffect(() => {
     fetch(`https://back-end-livid-delta.vercel.app/createlist/${id}`)
       .then((res) => res.json())
@@ -18,14 +17,10 @@ const Servicedetails = () => {
       .catch((error) => console.log(error));
   }, [id]);
 
-  //  const findmatchid=services.find(service=>service._id == id);
-
   const handlebook = (e) => {
     e.preventDefault();
-    alert("Form Submitted");
 
     const form = e.target;
-
     const productname = form.productname.value;
     const buyername = form.buyername.value;
     const buyeremail = form.email.value;
@@ -48,178 +43,187 @@ const Servicedetails = () => {
       productId: id,
     };
 
-    // e.target.reset();
-
-    console.log('formData', formData)
-
-    axios.post('https://back-end-livid-delta.vercel.app/orders', formData)
-    .then(res =>{
-      console.log('res',res);
-    })
-    .catch(err=>{
-      console.log(err);
-    })
+    axios
+      .post("https://back-end-livid-delta.vercel.app/orders", formData)
+      .then((res) => {
+        console.log("res", res);
+        
+        toast.success("Order placed successfully!");
+        document.getElementById("my_modal_1").close();
+        form.reset();
+      
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
-    <div className="w-[90%] md:w-[60%] mx-auto my-10 bg-white shadow-md rounded-lg overflow-hidden ">
+    <div className="w-[90%] md:w-[60%] mx-auto my-10 bg-white shadow-md rounded-lg overflow-hidden">
+
       <figure>
         <img
-          className="w-full h-90 object-cover"
+          className="w-full h-80 object-cover"
           src={service?.image}
-          alt="service"
+          alt={service?.name}
         />
       </figure>
 
-      <div className="p-6 space-y-4">
-        <h2 className="text-2xl font-bold text-green-900">
-          {/* {service?.serviceName} */}
-        </h2>
+      <div className="p-6 space-y-3">
+        <h2 className="text-3xl font-bold">{service?.name}</h2>
 
-        <p className="text-gray-700 leading-relaxed">
-          {/* {service?.description} */}
+        <p className="text-gray-600">
+          <span className="font-semibold">Category:</span> {service?.category}
         </p>
 
-        {/* Buttons */}
-        {/* Open the modal using document.getElementById('ID').showModal() method */}
+        <p className="text-gray-600">
+          <span className="font-semibold">Owner Email:</span> {service?.email}
+        </p>
+
+        <p className="text-gray-600">
+          <span className="font-semibold">Location:</span> {service?.location}
+        </p>
+
+        <p className=" font-bold text-xl">
+          Price: {service?.price} BDT
+        </p>
+
+        <p className="text-gray-700 leading-relaxed">{service?.description}</p>
+
         <button
-          className="btn"
+          className="w-full bg-green-800 text-white py-3 rounded-lg text-lg font-semibold hover:bg-green-900 transition"
           onClick={() => document.getElementById("my_modal_1").showModal()}
         >
-          Adaption/Order
+          Adopt / Order Now
         </button>
-        <dialog id="my_modal_1" className="modal">
-          <div className="modal-box">
-            {/* <h3 className="font-bold text-lg">Hello!</h3>
-    <p className="py-4">Press ESC key or click the button below to close</p> */}
-            <div className="modal-action">
-              <div method="dialog">
-                <div className="w-full max-w-xl mx-auto p-4 md:p-6 bg-white rounded-lg shadow-md">
-                  <h2 className="text-xl font-semibold mb-4">Order details</h2>
+      </div>
 
-                  <form onSubmit={handlebook} className="space-y-4">
+      <dialog id="my_modal_1" className="modal">
+        <div className="modal-box">
+          <div className="modal-action">
+            <div method="dialog">
+              <div className="w-full max-w-xl mx-auto p-4 md:p-6 bg-white rounded-lg shadow-md">
+                <h2 className="text-xl font-semibold mb-4">Order details</h2>
+
+                <form onSubmit={handlebook} className="space-y-4">
+
+                  <div>
+                    <label className="block text-sm font-medium mb-1">
+                      Product Name
+                    </label>
+                    <input
+                      type="text"
+                      name="productname"
+                      defaultValue={service?.name}
+                      readOnly
+                      className="w-full border rounded-lg p-2"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium mb-1">
+                      Buyer Name
+                    </label>
+                    <input
+                      defaultValue={user?.displayName}
+                      name="buyername"
+                      type="text"
+                      className="w-full border rounded-lg p-2"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium mb-1">
+                      Buyer Email
+                    </label>
+                    <input
+                      defaultValue={user?.email}
+                      readOnly
+                      name="email"
+                      type="email"
+                      className="w-full border rounded-lg p-2"
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-medium mb-1">
-                        Product Name
+                        Quantity
                       </label>
                       <input
-                        type="text"
-                        name="productname"
-                        defaultValue={service?.name}
-                        readOnly
+                      required
+                        type="number"
+                        name="quantity"
                         className="w-full border rounded-lg p-2"
-                        placeholder="Product Name"
                       />
                     </div>
 
                     <div>
                       <label className="block text-sm font-medium mb-1">
-                        Buyer Name
+                        Price
                       </label>
                       <input
-                        defaultValue={user?.displayName}
-                        name="buyername"
-                        type="text"
+                      required
+                        defaultValue={service?.price}
+                        name="price"
+                        type="number"
                         className="w-full border rounded-lg p-2"
-                        placeholder="Buyer Name"
                       />
                     </div>
+                  </div>
 
-                    <div>
-                      <label className="block text-sm font-medium mb-1">
-                        Buyer Email
-                      </label>
-                      <input
-                        defaultValue={user?.email}
-                        readOnly
-                        name="email"
-                        type="email"
-                        className="w-full border rounded-lg p-2"
-                        placeholder="Buyer Email"
-                      />
-                    </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-1">
+                      Address
+                    </label>
+                    <input
+                    required
+                      type="text"
+                      name="address"
+                      className="w-full border rounded-lg p-2"
+                    />
+                  </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-sm font-medium mb-1">
-                          Quantity
-                        </label>
-                        <input
-                          type="number"
-                          name="quantity"
-                          className="w-full border rounded-lg p-2"
-                          placeholder="Quantity"
-                        />
-                      </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-1">
+                      Phone
+                    </label>
+                    <input
+                    required
+                      type="text"
+                      name="phone"
+                      className="w-full border rounded-lg p-2"
+                    />
+                  </div>
 
-                      <div>
-                        <label className="block text-sm font-medium mb-1">
-                          Price
-                        </label>
-                        <input
-                          defaultValue={service?.price}
-                          name="price"
-                          type="number"
-                          className="w-full border rounded-lg p-2"
-                          placeholder="Price"
-                        />
-                      </div>
-                    </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-1">
+                      Additional Note
+                    </label>
+                    <textarea
+                      name="note"
+                      className="w-full border rounded-lg p-2"
+                    ></textarea>
+                  </div>
 
-                    <div>
-                      <label className="block text-sm font-medium mb-1">
-                        Address
-                      </label>
-                      <input
-                        type="text"
-                        name="address"
-                        className="w-full border rounded-lg p-2"
-                        placeholder="Address"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium mb-1">
-                        Phone
-                      </label>
-                      <input
-                        type="text"
-                        name="phone"
-                        className="w-full border rounded-lg p-2"
-                        placeholder="Phone"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium mb-1">
-                        Additional Note
-                      </label>
-                      <textarea
-                        name="note"
-                        className="w-full border rounded-lg p-2"
-                        placeholder="Additional Note"
-                      ></textarea>
-                    </div>
-
-                    <button className="w-full bg-blue-600 text-white py-2 rounded-lg font-semibold">
-                      Order
-                    </button>
-                  </form>
-
-                  <button
-                    className="btn"
-                    onClick={() =>
-                      document.getElementById("my_modal_1").close()
-                    }
-                  >
-                    Close
+                  <button className="w-full bg-blue-600 text-white py-2 rounded-lg font-semibold">
+                    Order
                   </button>
-                </div>
+                </form>
+
+                <button
+                  className="btn mt-3"
+                  onClick={() =>
+                    document.getElementById("my_modal_1").close()
+                  }
+                >
+                  Close
+                </button>
               </div>
             </div>
           </div>
-        </dialog>
-      </div>
+        </div>
+      </dialog>
     </div>
   );
 };

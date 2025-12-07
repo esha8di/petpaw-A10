@@ -20,7 +20,7 @@ const Ourvets = () => {
       </h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {services.slice(0,6).map((service) => (
+        {services.map((service) => (
           <div
             key={service._id}
             className="border rounded overflow-hidden shadow hover:shadow-lg transition"
@@ -33,9 +33,12 @@ const Ourvets = () => {
             <div className="p-4">
               <h3 className="font-semibold text-lg">{service.name}</h3>
               <p className="text-sm text-gray-600">{service.category}</p>
-              <p className="text-sm text-gray-600">
+              {/* <p className="text-sm text-gray-600">
                 {service.price ? `$${service.price}` : "Free for Adoption"}
-              </p>
+              </p> */}
+              <p className="text-sm text-gray-600">
+          Price: {service?.price} BDT
+        </p>
               <p className="text-sm text-gray-600">{service.location}</p>
               <Link
                 to={`/servicedetails/${service._id}`}
