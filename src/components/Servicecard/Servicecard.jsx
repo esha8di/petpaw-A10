@@ -1,34 +1,56 @@
-import React from 'react';
-import { Link } from 'react-router';
+import React from "react";
+import { Link } from "react-router";
 
-const Servicecard = ({service}) => {
-  console.log('service',service)
-    return (
+const Servicecard = ({ service }) => {
+  return (
+    <div className="border rounded-lg shadow-sm bg-white ">
+     
+      <figure>
+        <img
+          src={service?.image}
+          alt={service?.name}
+          className="w-full h-40 object-cover rounded-t-lg"
+        />
+      </figure>
+
+     
+      <div className="p-3">
+        
+        <h2 className="text-lg font-semibold">{service?.name}</h2>
+
        
-            <div className="card bg-base-100 w-full shadow-sm">
-  <figure>
-    <img
-      src={service?.image }
-      alt="Shoes" />
-  </figure>
-  <div className="card-body">
-    <h2 className="card-title">service_name : {service?.name}</h2>
-   <div className='flex justify-between  items-center'>
-    <p>Category :{service?.category}</p>
-    <p>Rating :{service?.rating}</p>
-   </div>
-    <div className="card-actions justify-end">
-     <Link to={`/servicedetails/${service._id}`}>
-     <button 
-      className="btn bg-green-900 text-white">
-        View Details</button>
-     </Link>
+        <div className="mt-1 text-sm text-gray-700">
+          <p>
+            <span className="font-semibold">Category:</span>{" "}
+            {service?.category}
+          </p>
+          <p>
+            <span className="font-semibold">Location:</span>{" "}
+            {service?.location}
+          </p>
+        </div>
+
+       
+        <p className="text-green-700 font-bold mt-2">
+          Price: {service?.price} BDT
+        </p>
+
       
-    </div>
-  </div>
-</div>
+        {service?.quantity && (
+          <p className="text-sm text-gray-600">Stock: {service.quantity}</p>
+        )}
+
        
-    );
+        <div className="mt-3">
+          <Link to={`/servicedetails/${service?._id}`}>
+            <button className="w-full bg-green-800 text-white py-2 rounded hover:bg-green-900 transition">
+              View Details
+            </button>
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Servicecard;

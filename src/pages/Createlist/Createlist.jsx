@@ -59,6 +59,7 @@ const Createlist = () => {
             }
            
         })
+        e.target.reset()
 
     };
 
