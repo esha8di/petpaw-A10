@@ -26,31 +26,32 @@ const Myorders = () => {
 
         myorders.forEach((order, index) => {
             doc.setFontSize(12);
-            doc.text(`Order ${index + 1}`, 14, y);
+            doc.text(`Order ${index + 1}`,14,y);
+            y+=6;
+            doc.text(`Product Name:${order.productname}`, 14, y);
             y += 6;
-            doc.text(`Product Name: ${order.productname}`, 14, y);
+            doc.text(`Buyer Name:${order.buyername}`, 14, y);
+            y+=6;
+            doc.text(`Price:${order.price} BDT`,14,y);
+            y+=6;
+            doc.text(`Quantity:${order.quantity}`,14,y);
+            y+=6;
+            doc.text(`Address: 
+                ${order.address}`,14,y);
             y += 6;
-            doc.text(`Buyer Name: ${order.buyername}`, 14, y);
+            doc.text(`Phone:${order.phone}`,14,y);
             y += 6;
-            doc.text(`Price: ${order.price} BDT`, 14, y);
-            y += 6;
-            doc.text(`Quantity: ${order.quantity}`, 14, y);
-            y += 6;
-            doc.text(`Address: ${order.address}`, 14, y);
-            y += 6;
-            doc.text(`Phone: ${order.phone}`, 14, y);
-            y += 6;
-            doc.text(`Date: ${new Date(order.date).toLocaleDateString()}`, 14, y);
+            doc.text(`Date:${new Date(order.date).toLocaleDateString()}`, 14, y);
             y += 10; 
 
            
-            if (y > 280) {
+            if (y>280) {
                 doc.addPage();
                 y = 20;
             }
         });
 
-        doc.save("my_orders_report.pdf");
+        doc.save("my_orders.pdf");
         toast.success("PDF downloaded!");
     };
 
