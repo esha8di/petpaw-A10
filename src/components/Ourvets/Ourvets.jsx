@@ -1,58 +1,51 @@
-import React from 'react';
-const vets=[
-  {
-    "id": 1,
-    "name": "Dr. Ayesha Rahman",
-    "specialist": "Small Animal Veterinarian",
-    "experience": "8+ Years Experience",
-    "description": "Dr. Ayesha specializes in canine and feline internal medicine. She is passionate about preventive care and creating stress-free treatment plans for pets.",
-    "image": "https://i.ibb.co.com/QxY8WGD/doctor-with-his-arms-crossed-white-background.jpg"
-  },
-  {
-    "id": 2,
-    "name": "Dr. Mehedi Hasan",
-    "specialist": "Exotic & Wildlife Specialist",
-    "experience": "6+ Years Experience",
-    "description": "Dr. Mehedi is known for his expertise in treating birds, rabbits, and exotic pets. He focuses on nutrition-based recovery and gentle handling techniques.",
-    "image": "https://i.ibb.co.com/gMmq000r/portrait-smiling-handsome-male-doctor-man.jpg"
-  },
-  {
-    "id": 3,
-    "name": "Dr. Farhana Siddiqua",
-    "specialist": "Surgery & Dermatology Expert",
-    "experience": "10+ Years Experience",
-    "description": "Dr. Farhana handles complex surgeries and skin-related issues. She is dedicated to safe procedures and long-term healing plans for pets of all ages.",
-    "image": "https://i.ibb.co.com/gMmq000r/portrait-smiling-handsome-male-doctor-man.jpg"
-  }
-]
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router';
+
+
 
 const Ourvets = () => {
+  const [services, setServices] = useState([]);
+
+  useEffect(() => {
+    
+    fetch("https://back-end-livid-delta.vercel.app/createlist?limit=6")
+      .then((res) => res.json())
+      .then((data) => setServices(data))
+      .catch((err) => console.log(err));
+  }, []);
     return (
-        <div className="w-[90%] mx-auto my-[100px] ">
-      <div>
-        <h2 className="text-3xl font-bold text-center text-green-900">
-          Meet Our Vets
-        </h2>
-      </div>
-      <div className=" grid grid-cols-2 md:grid md:grid-cols-3 gap-2 mt-10">
-        {vets.map((tip) => (
-            <>
-               <div className="card bg-base-100 w-full shadow-sm">
-            <figure>
-              <img className=" justify-left w-full h-[200px] object-cover" src={tip?.image} alt="Shoes" />
-            </figure>
-            <div className="card-body">
-              <h2 className="card-title">{tip?.name}</h2>
-              <p>{tip?.specialist}</p>
-              <p>{tip?.experience}</p>
+        <div className="max-w-7xl mx-auto px-6 py-10">
+      <h2 className="text-3xl font-bold text-center text-green-900 mb-8">
+        Latest Listings
+      </h2>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {services.slice(0,6).map((service) => (
+          <div
+            key={service._id}
+            className="border rounded overflow-hidden shadow hover:shadow-lg transition"
+          >
+            <img
+              src={service.image}
+              alt={service.name}
+              className="w-full h-48 object-cover"
+            />
+            <div className="p-4">
+              <h3 className="font-semibold text-lg">{service.name}</h3>
+              <p className="text-sm text-gray-600">{service.category}</p>
+              <p className="text-sm text-gray-600">
+                {service.price ? `$${service.price}` : "Free for Adoption"}
+              </p>
+              <p className="text-sm text-gray-600">{service.location}</p>
+              <Link
+                to={`/servicedetails/${service._id}`}
+                className="mt-2 inline-block text-white bg-green-700 px-3 py-1 rounded hover:bg-green-800"
+              >
+                See Details
+              </Link>
             </div>
           </div>
-            </>
-       
-
-        
-        )
-        )}
+        ))}
       </div>
     </div>
     );
