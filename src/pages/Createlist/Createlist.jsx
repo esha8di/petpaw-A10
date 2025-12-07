@@ -66,9 +66,9 @@ const Createlist = () => {
     return (
         <form
             onSubmit={handlesubmit}
-            className="max-w-xl m-10 bg-green-50 mx-auto p-5 space-y-4 border rounded-lg shadow"
+            className="max-w-xl m-10  mx-auto p-5 space-y-4 border rounded-lg shadow"
         >
-            {/* 1. Product or Pet Name */}
+            
             <div>
                 <label className="block font-semibold">Product / Pet Name</label>
                 <input
@@ -79,7 +79,7 @@ const Createlist = () => {
                 />
             </div>
 
-            {/* 2. Category */}
+           
             <div>
                 <label className="block font-semibold">Category</label>
                 <select name="category" className="w-full border p-2 rounded">
@@ -91,7 +91,7 @@ const Createlist = () => {
                 </select>
             </div>
 
-            {/* 3. Price */}
+           
             <div>
                 <label className="block font-semibold">Price</label>
                 <input
@@ -102,7 +102,7 @@ const Createlist = () => {
                 />
             </div>
 
-            {/* 4. Location */}
+           
             <div>
                 <label className="block font-semibold">Location</label>
                 <input
@@ -113,7 +113,7 @@ const Createlist = () => {
                 />
             </div>
 
-            {/* 5. Description */}
+           
             <div>
                 <label className="block font-semibold">Description</label>
                 <textarea
@@ -124,7 +124,7 @@ const Createlist = () => {
                 ></textarea>
             </div>
 
-            {/* 6. Image URL */}
+           
             <div>
                 <label className="block font-semibold">Image URL</label>
                 <input
@@ -135,13 +135,13 @@ const Createlist = () => {
                 />
             </div>
 
-            {/* 7. Date */}
+           
             <div>
                 <label className="block font-semibold">Pick-up Date</label>
                 <input name="date" type="date" className="w-full border p-2 rounded" />
             </div>
 
-            {/* 8. Email */}
+           
             <div>
                 <label className="block font-semibold">Email</label>
                 <input
@@ -154,7 +154,7 @@ const Createlist = () => {
                 />
             </div>
 
-            {/* 9. Quantity */}
+           
             <div>
                 <label className="block font-semibold">Quantity</label>
                 <input
@@ -167,7 +167,7 @@ const Createlist = () => {
 
             <button
                 type="submit"
-                className="w-full btn bg-blue-600 text-white p-2 rounded mt-3"
+                className="w-full btn bg-black text-white p-2 rounded mt-3"
             >
                 Submit
             </button>

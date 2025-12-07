@@ -3,7 +3,7 @@ import { Link } from "react-router";
 
 const Servicecard = ({ service }) => {
   return (
-    <div className="border rounded-lg shadow-sm bg-white ">
+    <div className="border rounded-lg shadow-sm  ">
      
       <figure>
         <img
@@ -31,7 +31,7 @@ const Servicecard = ({ service }) => {
         </div>
 
        
-        <p className="text-green-700 font-bold mt-2">
+        <p className=" font-bold mt-2">
           Price: {service?.price} BDT
         </p>
 
@@ -43,7 +43,7 @@ const Servicecard = ({ service }) => {
        
         <div className="mt-3">
           <Link to={`/servicedetails/${service?._id}`}>
-            <button className="w-full bg-green-800 text-white py-2 rounded hover:bg-green-900 transition">
+            <button className="w-full bg-black text-white py-2 rounded hover:bg-green-900 transition">
               View Details
             </button>
           </Link>

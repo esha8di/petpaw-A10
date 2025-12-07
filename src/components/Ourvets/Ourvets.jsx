@@ -8,7 +8,7 @@ const Ourvets = () => {
 
   useEffect(() => {
     
-    fetch("https://back-end-livid-delta.vercel.app/createlist?limit=6")
+    fetch("https://back-end-livid-delta.vercel.app/createlisthome?limit=6")
       .then((res) => res.json())
       .then((data) => setServices(data))
       .catch((err) => console.log(err));
@@ -42,7 +42,7 @@ const Ourvets = () => {
               <p className="text-sm text-gray-600">{service.location}</p>
               <Link
                 to={`/servicedetails/${service._id}`}
-                className="mt-2 inline-block text-white bg-green-700 px-3 py-1 rounded hover:bg-green-800"
+                className="mt-2 inline-block text-white bg-black px-3 py-1 rounded btn"
               >
                 See Details
               </Link>

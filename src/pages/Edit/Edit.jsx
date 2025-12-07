@@ -183,7 +183,7 @@ const Edit = () => {
 
             <button
                 type="submit"
-                className="w-full btn bg-blue-600 text-white p-2 rounded mt-3"
+                className="w-full btn bg-black text-white p-2 rounded mt-3"
             >
                 Update
             </button>

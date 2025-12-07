@@ -35,8 +35,8 @@ const Services = () => {
     >
       <title>Services</title>
       <div>
-        <h2 className="text-3xl font-bold text-center text-green-900">
-          Popular Winter Care Service
+        <h2 className="text-3xl font-bold text-center ">
+          Our Services
         </h2>
 
         <div>

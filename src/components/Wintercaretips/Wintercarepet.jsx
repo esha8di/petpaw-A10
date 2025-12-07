@@ -34,7 +34,7 @@ const Wintercarepet = () => {
      
 
      
-      <section className="bg-green-100 rounded-xl p-8 text-center">
+      <section className=" rounded-xl p-8 text-center">
         <h2 className="text-3xl font-bold mb-4 ">
           Why Adopt from PawMart?
         </h2>
@@ -43,12 +43,7 @@ const Wintercarepet = () => {
           loving animals a forever home. Every adoption is a chance to make a
           difference in a pet’s life!
         </p>
-        <Link
-          to="/adopt-info"
-          className="mt-4 inline-block  text-white px-4 py-2 rounded hover:bg-green-800"
-        >
-          Learn More
-        </Link>
+        
       </section>
 
        

@@ -42,7 +42,7 @@ const MyService = () => {
 
     return (
         <div className="w-[90%] mx-auto my-10 overflow-x-auto border">
-            <table className="min-w-full bg-white border border-gray-200 rounded-lg">
+            <table className="min-w-full  border border-gray-200 rounded-lg">
                 <thead className="bg-black text-white">
                     <tr>
                         <th className="py-3 px-4 text-left">Name</th>
@@ -54,7 +54,7 @@ const MyService = () => {
                 </thead>
                 <tbody>
                     {services.map(service => (
-                        <tr key={service?._id} className="border-b hover:bg-gray-50">
+                        <tr key={service?._id} className="border-b ">
                             <td className="py-2 px-4">{service?.name}</td>
                             <td className="py-2 px-4">{service?.category}</td>
                             <td className="py-2 px-4">{service?.email}</td>

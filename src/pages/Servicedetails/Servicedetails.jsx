@@ -59,7 +59,7 @@ const Servicedetails = () => {
   };
 
   return (
-    <div className="w-[90%] md:w-[60%] mx-auto my-10 bg-white shadow-md rounded-lg overflow-hidden">
+    <div className="w-[90%] md:w-[60%] mx-auto my-10  shadow-md rounded-lg overflow-hidden">
 
       <figure>
         <img
@@ -91,7 +91,7 @@ const Servicedetails = () => {
         <p className="text-gray-700 leading-relaxed">{service?.description}</p>
 
         <button
-          className="w-full bg-green-800 text-white py-3 rounded-lg text-lg font-semibold hover:bg-green-900 transition"
+          className="w-full bg-black text-white py-3 rounded-lg text-lg font-semibold btn"
           onClick={() => document.getElementById("my_modal_1").showModal()}
         >
           Adopt / Order Now
@@ -102,8 +102,8 @@ const Servicedetails = () => {
         <div className="modal-box">
           <div className="modal-action">
             <div method="dialog">
-              <div className="w-full max-w-xl mx-auto p-4 md:p-6 bg-white rounded-lg shadow-md">
-                <h2 className="text-xl font-semibold mb-4">Order details</h2>
+              <div className="w-full max-w-xl mx-auto p-4 md:p-6  rounded-lg shadow-md">
+                <h2 className="text-xl font-semibold mb-4">Order Please!</h2>
 
                 <form onSubmit={handlebook} className="space-y-4">
 
@@ -206,7 +206,7 @@ const Servicedetails = () => {
                     ></textarea>
                   </div>
 
-                  <button className="w-full bg-blue-600 text-white py-2 rounded-lg font-semibold">
+                  <button className="w-full bg-black text-white py-2 rounded-lg font-semibold">
                     Order
                   </button>
                 </form>

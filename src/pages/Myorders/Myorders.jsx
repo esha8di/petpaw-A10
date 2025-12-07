@@ -28,9 +28,9 @@ const Myorders = () => {
             doc.setFontSize(12);
             doc.text(`Order ${index + 1}`,14,y);
             y+=6;
-            doc.text(`Product Name:${order.productname}`, 14, y);
+            doc.text(`Product Name:${order.productname}`,14,y);
             y += 6;
-            doc.text(`Buyer Name:${order.buyername}`, 14, y);
+            doc.text(`Buyer Name:${order.buyername}`,14,y);
             y+=6;
             doc.text(`Price:${order.price} BDT`,14,y);
             y+=6;
@@ -64,7 +64,7 @@ const Myorders = () => {
             >
                 Download Report
             </button>
-            <table className="min-w-full bg-white border border-gray-200 rounded-lg">
+            <table className="min-w-full  border border-gray-200 rounded-lg">
                 <thead className="bg-black text-white">
                     <tr>
                         <th className="py-3 px-4 text-left">Product Name</th>
@@ -78,7 +78,7 @@ const Myorders = () => {
                 </thead>
                 <tbody>
                     {myorders.map(order => (
-                        <tr key={order._id} className="border-b hover:bg-gray-50">
+                        <tr key={order._id} className="border-b ">
                             <td className="py-2 px-4">{order?.productname}</td>
                             <td className="py-2 px-4">{order?.buyername}</td>
                             <td className="py-2 px-4">{order?.price} BDT</td>
