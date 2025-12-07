@@ -32,7 +32,7 @@ const Popularsection = () => {
   {
     name: "care",
     label: "Pet Care Products",
-    img:"https://images.unsplash.com/photo-1743648773958-0715973a12d5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGV0JTIwY2FyZSUyMHByb2R1Y3R8ZW58MHx8MHx8fDA%3D"
+    img: "https://i.ibb.chttps://images.unsplash.com/photo-1625321150203-cea4bee44b54?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cGV0JTIwY2FyZXxlbnwwfHwwfHx8MA%3D%3Do.com/BKg9rg4/pet-care.jpg"
   }
 ];
 
