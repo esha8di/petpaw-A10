@@ -46,9 +46,9 @@ const Navbar = () => {
       </NavLink>
       {user && (
         <>
-          <NavLink to="/profile" className="mr-2  ">
+          {/* <NavLink to="/profile" className="mr-2  ">
             My Profile
-          </NavLink>
+          </NavLink> */}
           <NavLink to="/createlist" className="mr-2 ">
            Add Listing
           </NavLink>

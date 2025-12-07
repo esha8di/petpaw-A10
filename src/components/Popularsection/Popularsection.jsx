@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Servicecard from '../Servicecard/Servicecard';
+import { Link } from 'react-router';
+
 
 const Popularsection = () => {
     const [services,setServices]=useState([])
@@ -11,25 +13,63 @@ const Popularsection = () => {
 
     },[])
 
+    const categories = [
+  {
+    name: "pets",
+    label: "Pets (Adoption)",
+    img: "https://images.unsplash.com/photo-1554830072-52d78d0d4c18?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cGV0JTIwYWRvcHRpb258ZW58MHx8MHx8fDA%3D"
+  },
+  {
+    name: "food",
+    label: "Pet Food",
+    img: "https://images.unsplash.com/photo-1571873735645-1ae72b963024?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8cGV0JTIwZm9vZHxlbnwwfHwwfHx8MA%3D%3D"
+  },
+  {
+    name: "accessories",
+    label: "Accessories",
+    img: "https://images.unsplash.com/photo-1605092116196-404f5b8caa15?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGV0JTIwYWNjZXNzb3JpZXN8ZW58MHx8MHx8fDA%3D"
+  },
+  {
+    name: "care",
+    label: "Pet Care Products",
+    img:"https://images.unsplash.com/photo-1743648773958-0715973a12d5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGV0JTIwY2FyZSUyMHByb2R1Y3R8ZW58MHx8MHx8fDA%3D"
+  }
+];
+
     
     console.log('popularid',services);
     return (
         <>
-        <div className='w-[90%] mx-auto my-6 '>
-            <div>
-                <h2 className='text-3xl font-bold text-center text-green-900'>Popular Winter Care Service</h2>
-                
-            </div>
-            <div className=" grid grid-cols-2 md:grid-cols-3 gap-2 mt-10">
-                {
-                    services.slice(0,3).map(service =>
-                        <Servicecard key={service._id} service={service}></Servicecard>
-                    )
-                }
+         <div className="max-w-7xl mx-auto px-6 py-10">
+      <h2 className="text-3xl font-bold text-center mb-8">
+        Shop by Category
+      </h2>
 
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+        {categories.map((cat) => (
+          <Link
+            to={`/category-filtered-product/${cat.name}`}
+            key={cat.name}
+            className="group rounded-xl overflow-hidden shadow-md hover:shadow-lg transition"
+          >
+            <div className="relative">
+              <img
+                src={cat.img}
+                alt={cat.label}
+                className="w-full h-40 object-cover "
+              />
+              <div className="absolute inset-0 bg-black/40 flex items-center justify-center ">
+                <p className="text-white text-lg font-semibold">
+                  {cat.label}
+                </p>
+              </div>
             </div>
-            
-        </div>
+
+            <p className="text-center py-3 font-medium">{cat.label}</p>
+          </Link>
+        ))}
+      </div>
+    </div>
            
 
         </>
